@@ -22,6 +22,9 @@ import { useToast } from 'vue-toastification';
 
 const text = ref('');
 const amount = ref(0);
+
+const emit = defineEmits(['add-transaction']);
+
 const toast = useToast();
 
 const addTransaction = () => {
@@ -31,7 +34,6 @@ const addTransaction = () => {
   }
 
   const newTransaction = {
-    id: Date.now(),
     text: text.value,
     amount: Number(amount.value)
   };
