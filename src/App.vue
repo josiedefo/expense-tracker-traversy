@@ -47,6 +47,11 @@ const handleTransactionSubmitted = (newTransaction) => {
 const generateUniqueId = () => {
   return Date.now() + Math.floor(Math.random() * 1000);
 };
+
+//Handle transaction deletion
+const handleTransactionDeleted = (id) => {
+    transactions.value = transactions.value.filter(transaction => transaction.id !== id);
+    toast.success('Transaction deleted successfully.');}
 </script>
 
 <template>
@@ -54,7 +59,7 @@ const generateUniqueId = () => {
     <div class="container">
         <Balance :total/>
         <IncomeExpense :income :expense/>
-        <TransactionList :transactions="transactions" />
+        <TransactionList :transactions="transactions" @delete-transaction="handleTransactionDeleted" />
         <AddTransaction @add-transaction="handleTransactionSubmitted" />
     </div>
 </template>
